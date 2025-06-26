@@ -26,18 +26,16 @@ public class TemperatureLogController {
     @GetMapping
     public Page<TemperatureLogOutPut> search(@PathVariable TSID sensorId, @PageableDefault Pageable pageable) {
 
-        Page<TemperatureLog> temperatureLogs =
-                temperatureLogRepository.findAllBySensorId(new SensorId(sensorId), pageable);
+        Page<TemperatureLog> temperatureLogs = temperatureLogRepository.findAllBySensorId(
+                new SensorId(sensorId), pageable);
 
         return temperatureLogs.map(temperatureLog ->
                 TemperatureLogOutPut.builder()
                         .id(temperatureLog.getId().getValue())
                         .value(temperatureLog.getValue())
                         .registeredAt(temperatureLog.getRegisteredAt())
-                        .sensorId(temperatureLog.getSensorId())
-                        .build()
-
-        );
+                        .sensorId(temperatureLog.getSensorId().getValue())
+                        .build());
 
     }
 

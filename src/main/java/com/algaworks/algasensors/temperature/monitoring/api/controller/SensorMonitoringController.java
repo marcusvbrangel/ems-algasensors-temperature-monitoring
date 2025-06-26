@@ -25,7 +25,7 @@ public class SensorMonitoringController {
         SensorMonitoring sensorMonitoring = findByIdOrDefault(sensorId);
 
         return SensorMonitoringOutput.builder()
-                .id(sensorMonitoring.getId())
+                .id(sensorMonitoring.getId().getValue())
                 .enabled(sensorMonitoring.getEnabled())
                 .lastTemperature(sensorMonitoring.getLastTemperature())
                 .updatedAt(sensorMonitoring.getUpdatedAt())
