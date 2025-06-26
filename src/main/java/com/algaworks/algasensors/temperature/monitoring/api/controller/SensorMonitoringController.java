@@ -66,22 +66,3 @@ public class SensorMonitoringController {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
