@@ -28,7 +28,7 @@ public class SensorAlertController {
     */
     @GetMapping("/{sensorId}/alert")
     @ResponseStatus(HttpStatus.OK)
-    public SensorAlertOutput getSensorAlert(@PathVariable TSID sensorId) {
+    public SensorAlertOutput getSensorAlert(@PathVariable final TSID sensorId) {
 
         return sensorAlertRepository.findById(new SensorId(sensorId))
                 .map(sensorAlert -> SensorAlertOutput.builder()
@@ -49,8 +49,8 @@ public class SensorAlertController {
      */
     @PutMapping("/{sensorId}/alert")
     @ResponseStatus(HttpStatus.OK)
-    public SensorAlertOutput createOrUpdateSensorAlert(@PathVariable TSID sensorId,
-                                                       @RequestBody SensorAlertInput sensorAlertInput) {
+    public SensorAlertOutput createOrUpdateSensorAlert(@PathVariable final TSID sensorId,
+                                                       @RequestBody final SensorAlertInput sensorAlertInput) {
 
         var sensorAlert = sensorAlertRepository.findById(new SensorId(sensorId))
                 .map(existing -> {
@@ -69,6 +69,7 @@ public class SensorAlertController {
                 .maxTemperature(saved.getMaxTemperature())
                 .minTemperature(saved.getMinTemperature())
                 .build();
+
     }
 
     /*
@@ -79,7 +80,7 @@ public class SensorAlertController {
     */
     @DeleteMapping("/{sensorId}/alert")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteSensorAlert(@PathVariable TSID sensorId) {
+    public void deleteSensorAlert(@PathVariable final TSID sensorId) {
 
         sensorAlertRepository.findById(new SensorId(sensorId))
                 .ifPresentOrElse(
@@ -88,7 +89,7 @@ public class SensorAlertController {
 
     }
 
-    private SensorAlert toDomain(SensorId sensorId, SensorAlertInput sensorAlertInput) {
+    private SensorAlert toDomain(final SensorId sensorId, final SensorAlertInput sensorAlertInput) {
         return SensorAlert.builder()
                 .id(sensorId)
                 .maxTemperature(sensorAlertInput.getMaxTemperature())
