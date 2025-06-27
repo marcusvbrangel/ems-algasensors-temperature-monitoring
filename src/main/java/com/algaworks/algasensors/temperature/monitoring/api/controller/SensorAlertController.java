@@ -32,7 +32,7 @@ public class SensorAlertController {
 
         return sensorAlertRepository.findById(new SensorId(sensorId))
                 .map(sensorAlert -> SensorAlertOutput.builder()
-                        .id(sensorAlert.getId())
+                        .id(sensorAlert.getId().getValue())
                         .maxTemperature(sensorAlert.getMaxTemperature())
                         .minTemperature(sensorAlert.getMinTemperature())
                         .build())
@@ -65,7 +65,7 @@ public class SensorAlertController {
         var saved = sensorAlertRepository.save(sensorAlert);
 
         return SensorAlertOutput.builder()
-                .id(saved.getId())
+                .id(saved.getId().getValue())
                 .maxTemperature(saved.getMaxTemperature())
                 .minTemperature(saved.getMinTemperature())
                 .build();
